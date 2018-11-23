@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>名字大全</title>
+</head>
+<body>
+<table>
+    {% for item in  data %}
+        <p><a href="{{ item.2 }}">{{ item.1 }}</a></p>
+    {% endfor %}
+</table>
+</body>
+</html>
