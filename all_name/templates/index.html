@@ -5,10 +5,46 @@
     <title>名字大全</title>
 </head>
 <body>
-<table>
-    {% for item in  data %}
-        <p><a href="{{ item.2 }}">{{ item.1 }}</a></p>
+
+    {% for item in  page %}
+        <span style="color:crimson; margin-left: 30px; margin-top: 20px;"><a href="{{ item.2 }}">{{ item.1 }}</a></span>
     {% endfor %}
-</table>
+
+    <br>
+{##}
+{#     <p>当前页{{ page.number }}</p>#}
+{#    <p>页码:#}
+{#    {% for i in page.paginator.page_rang %}#}
+{#        <a href="{% url 'index' %}?page={{i}} ">{{ i }}</a>#}
+{#    </p>#}
+{#    {% endfor %}#}
+
+{#<p>#}
+{#    {% if page.has_previous %}#}
+{#    <a href="{% url 'index' %}?page={{ page.previous_page_number }}">上一页</a>#}
+{#    {% endif %}#}
+{##}
+{#    {% if page.has_next %}#}
+{#    <a href="{% url 'index' %}?page={{ page.next_page_number }}">下一页</a>#}
+{#    {% endif %}#}
+{##}
+{##}
+{#</p>#}
+    <p>当前{{ page.number }}页</p>
+
+    {% for i in page.paginator.page_range %}
+        {{ i }}
+    {% endfor %}
+
+    {% if page.has_next %}
+        <a href="{% url 'index' %}?page_num={{page.next_page_number}}">下一页</a>
+    {% endif %}
+
+    {% if page.has_previous %}
+        <a href="{% url 'index' %}?page_num={{page.previous_page_number}}">上一页</a>
+    {% endif %}
+
+
+
 </body>
 </html>

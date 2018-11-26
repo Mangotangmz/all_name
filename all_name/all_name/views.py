@@ -3,6 +3,7 @@ import request
 from django.http import HttpResponse
 from django.core.paginator import Paginator
 from django.shortcuts import render
+from django.core.paginator import Paginator
 
 
 def index(request):
@@ -19,4 +20,9 @@ def index(request):
         data = cursor.fetchall()
         print(data)
         coon.close()
-        return render(request, 'index.html', {'data': data})
+        # 创建分页对象
+        page_num = request.GET.get('page_num', 1)
+        paginator = Paginator(data, 30)
+        page = paginator.page(page_num)
+
+        return render(request, 'index.html', {'page': page})
